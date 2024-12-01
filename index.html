@@ -146,7 +146,9 @@
             100% { opacity: 1; }
         }
         @keyframes slideIn {
-            0% { transform: translateX(-100%); opacity: 0; }
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
             100% { transform: translateX(0); opacity: 1; }
         }
         @keyframes fadeInOut {
@@ -213,7 +215,13 @@
 <script>
     function toggleMessageForm() {
         const formContainer = document.getElementById('message-form-container');
-        formContainer.style.display = formContainer.style.display === 'none' || formContainer.style.display === '' ? 'block' : 'none';
+        if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+            formContainer.style.display = 'block';
+            formContainer.style.animation = 'slideIn 0.5s ease-in-out';
+        } else {
+            formContainer.style.animation = 'fadeInOut 0.5s ease-in-out';
+            setTimeout(() => formContainer.style.display = 'none', 500);
+        }
     }
 
     function submitMessage() {
@@ -231,6 +239,19 @@
             messageInput.value = '';
             toggleMessageForm();
 
+            // Store message to localStorage for Message Board page
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push(message);
+            localStorage.setItem('messages', JSON.stringify(messages));
+        } else {
+            alert('Please enter a message before submitting.');
+        }
+    }, 2000);
+
+            // Reset the input field and hide the form
+            messageInput.value = '';
+            toggleMessageForm();
+
             // Add message to message board (future implementation can include saving to a database)
             const messageBoardLink = document.querySelector('.button-link[href="message-board.html"]');
             messageBoardLink.setAttribute('data-message', message);
@@ -242,3 +263,4 @@
 
 </body>
 </html>
+
