@@ -4,57 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamified Learning</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+        /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background: linear-gradient(135deg, #283593, #1e88e5);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* 动态粒子背景 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/l0HlA6j7lvsTP3DFO/giphy.gif') repeat center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
             text-align: center;
+            z-index: 2;
+            position: relative;
             animation: fadeIn 2s ease-in-out;
         }
-        h1 {
+
+        header h1 {
             margin: 0;
             font-size: 2.5em;
         }
-        .button-link {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .button-link:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
+
         .container {
             padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
             animation: slideIn 1.5s ease-in-out;
+            z-index: 2;
+            position: relative;
         }
+
+        ul {
+            line-height: 1.6;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: linear-gradient(135deg, #42a5f5, #64b5f6);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5), 0px 0px 15px rgba(66, 165, 245, 0.8);
+        }
+
         footer {
-            background-color: #333;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             text-align: center;
             padding: 10px;
             margin-top: 20px;
-            animation: fadeIn 3s ease-in-out;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            z-index: 2;
         }
-        h3 {
-            color: #4CAF50;
-        }
-        ul {
-            line-height: 1.6;
-        }
+
+        /* 动画效果 */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -63,6 +100,7 @@
                 opacity: 1;
             }
         }
+
         @keyframes slideIn {
             from {
                 transform: translateY(30px);
@@ -71,6 +109,18 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
             }
         }
     </style>
@@ -82,48 +132,29 @@
 </header>
 
 <div class="container">
-    <p>Gamified learning integrates game mechanics into educational activities to motivate and engage students. By incorporating elements like points, badges, leaderboards, and challenges, this approach transforms traditional learning experiences into fun and interactive opportunities for growth.</p>
+    <p>
+        Gamified learning transforms traditional education by adding elements like points, badges, and leaderboards. It makes lessons fun and interactive, boosting engagement and motivation.
+    </p>
     
     <h3>Key Tools: Quizizz & Kahoot</h3>
     <ul>
-        <li><strong>Quizizz:</strong> An interactive platform for real-time quizzes that provide instant feedback and detailed performance analysis for both students and teachers.</li>
-        <li><strong>Kahoot:</strong> A tool that allows teachers to create engaging live quizzes where students can compete in a game-like environment.</li>
+        <li><strong>Quizizz:</strong> Real-time quizzes for learning with instant feedback.</li>
+        <li><strong>Kahoot:</strong> Interactive classroom games that encourage healthy competition.</li>
     </ul>
     <a href="https://quizizz.com/" class="button-link" target="_blank">Visit Quizizz</a>
     <a href="https://kahoot.com/" class="button-link" target="_blank">Visit Kahoot</a>
 
-    <h3>Benefits of Gamified Learning</h3>
+    <h3>Why Gamified Learning Works</h3>
     <ul>
-        <li><strong>Increases Engagement:</strong> Students are more likely to participate actively when learning feels like a game.</li>
-        <li><strong>Promotes Healthy Competition:</strong> Leaderboards and rewards encourage students to challenge themselves and improve their performance.</li>
-        <li><strong>Immediate Feedback:</strong> Gamified platforms provide instant results, helping students identify areas of improvement.</li>
-        <li><strong>Builds Teamwork:</strong> Collaborative games foster teamwork and improve social interaction among students.</li>
+        <li>Boosts participation through fun and engaging challenges.</li>
+        <li>Encourages healthy competition with leaderboards and rewards.</li>
+        <li>Provides instant feedback to identify strengths and weaknesses.</li>
+        <li>Fosters collaboration and teamwork in group games.</li>
     </ul>
-
-    <h3>How to Use Gamified Learning Tools</h3>
-    <p>
-        Teachers can integrate tools like Quizizz and Kahoot into their lesson plans to make learning more interactive. For example:
-    </p>
-    <ul>
-        <li><strong>Lesson Reviews:</strong> Create a Quizizz game to review key concepts at the end of a lesson.</li>
-        <li><strong>Live Quizzes:</strong> Use Kahoot to host a live competition during class, encouraging students to answer questions quickly and accurately.</li>
-        <li><strong>Homework Challenges:</strong> Assign Quizizz activities as homework to reinforce understanding in a fun way.</li>
-    </ul>
-
-    <h3>Examples of Gamified Learning in Action</h3>
-    <p>
-        1. <strong>Quizizz for Language Learning:</strong> A teacher creates a vocabulary quiz on Quizizz. Students earn points for each correct answer, and at the end, the leaderboard motivates them to strive for better scores in the next session.
-    </p>
-    <p>
-        2. <strong>Kahoot for Science Class:</strong> A live Kahoot session is held to review a chapter on ecosystems. Students answer questions about food chains, habitats, and biodiversity, competing in real-time with their peers.
-    </p>
-    <p>
-        3. <strong>Math Challenges:</strong> Teachers design timed quizzes to solve math problems on Quizizz, helping students develop speed and accuracy while practicing fundamental concepts.
-    </p>
 
     <h3>Future of Gamified Learning</h3>
     <p>
-        As technology continues to evolve, gamified learning tools are expected to become even more advanced, incorporating elements like virtual reality (VR) and augmented reality (AR). These innovations could create fully immersive learning experiences, making education more engaging and impactful than ever before.
+        As VR and AR evolve, gamified learning will offer fully immersive experiences, making education even more engaging and impactful.
     </p>
 
     <a href="index.html" class="button-link">Back to Home</a>
