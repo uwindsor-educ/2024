@@ -27,12 +27,36 @@
             line-height: 1.6;
             animation: slideIn 2s ease-in-out;
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .button-link {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button-link:hover {
+            background-color: #5eb8ff;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #5eb8ff;
+        }
         .message-list {
             margin-top: 30px;
             background-color: #e3f2fd;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(100, 181, 246, 0.6);
+            height: 300px;
+            overflow-y: auto;
             animation: fadeIn 2.5s ease-in-out;
         }
         .message {
@@ -42,6 +66,32 @@
             border-radius: 5px;
             margin-bottom: 10px;
             animation: messageSlideIn 1s ease-in-out;
+        }
+        .message-form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .message-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 70%;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .message-submit {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .message-submit:hover {
+            background-color: #5eb8ff;
         }
         footer {
             background-color: #4a90e2;
@@ -77,6 +127,16 @@
     <div class="message-list" id="message-list">
         <!-- Messages will be dynamically inserted here -->
     </div>
+    <div class="message-form">
+        <input type="text" id="message-input" class="message-input" placeholder="Leave your message here (max 50 characters)" maxlength="50">
+        <button id="message-submit" class="message-submit" onclick="submitMessage()">Submit</button>
+    </div>
+    <div class="button-container">
+        <a href="index.html" class="button-link">Back to Home</a>
+        <a href="personalized-learning.html" class="button-link">Personalized Learning</a>
+        <a href="gamified-learning.html" class="button-link">Gamified Learning</a>
+        <a href="collaborative-learning.html" class="button-link">Collaborative Learning</a>
+    </div>
 </div>
 
 <footer>
@@ -84,16 +144,13 @@
 </footer>
 
 <script>
-    // Example messages for demonstration purposes
-    const messages = [
-        "Great content! Looking forward to more innovative ideas!",
-        "This website is very informative. Thank you for sharing!",
-        "I'm inspired to use these educational technologies in my classroom!"
-    ];
+    // Retrieve messages from localStorage to persist data across pages
+    let messages = JSON.parse(localStorage.getItem('messages')) || [];
 
     // Function to display messages dynamically
     function displayMessages() {
         const messageList = document.getElementById('message-list');
+        messageList.innerHTML = ''; // Clear existing messages
         messages.forEach(message => {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message');
@@ -104,6 +161,28 @@
 
     // Call the function to display messages on page load
     displayMessages();
+
+    // Function to handle message submission
+    function submitMessage() {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value.trim();
+        if (message) {
+            messages.push(message);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            displayMessages();
+            messageInput.value = ''; // Clear input field after submission
+        }
+    }
+
+    // Listen for new messages submitted from the homepage
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'newMessage' && event.newValue) {
+            messages.push(event.newValue);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            displayMessages();
+            localStorage.removeItem('newMessage'); // Clear the new message after adding it
+        }
+    });
 </script>
 
 </body>
