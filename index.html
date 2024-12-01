@@ -49,6 +49,21 @@
             transform: scale(1.05);
             box-shadow: 0 0 15px #0ea5e9;
         }
+        .image-container {
+            text-align: center;
+            margin: 40px 0;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.6);
+            transition: transform 0.5s;
+        }
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
         footer {
             background-color: #1e293b;
             color: white;
@@ -56,6 +71,75 @@
             padding: 10px;
             margin-top: 20px;
             animation: fadeIn 3s ease-in-out;
+            position: relative;
+        }
+        .message-board {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1e88e5;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .message-board:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.8);
+        }
+        #message-form-container {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: fadeInOut 0.5s ease-in-out;
+        }
+        #message-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #message-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+        #submit-message {
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #submit-message:hover {
+            background-color: #2563eb;
+        }
+        #confirmation-message {
+            display: none;
+            position: fixed;
+            bottom: 180px;
+            right: 20px;
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: fadeInOut 1s ease-in-out;
         }
         @keyframes fadeIn {
             0% { opacity: 0; }
@@ -64,6 +148,10 @@
         @keyframes slideIn {
             0% { transform: translateX(-100%); opacity: 0; }
             100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -75,6 +163,9 @@
 </header>
 
 <div class="container">
+    <div class="image-container">
+        <img src="https://technext.ng/wp-content/uploads/2020/01/edtech.jpg" alt="Innovative Education Technology">
+    </div>
     <h2>About the Course</h2>
     <p>
         This course explores how Information and Communication Technologies (ICT) can support
@@ -99,11 +190,55 @@
     <a href="personalized-learning.html" class="button-link">Personalized Learning</a>
     <a href="gamified-learning.html" class="button-link">Gamified Learning</a>
     <a href="collaborative-learning.html" class="button-link">Collaborative Learning</a>
+    <a href="message-board.html" class="button-link">Message Board</a>
 </div>
 
 <footer>
     <p>Created as part of EDUC8510 - Innovative Practices in Education Technology | Contributors: Yilin Gong, Stella Aideyan, Faith Ezekwe</p>
 </footer>
+
+<div class="message-board" onclick="toggleMessageForm()">
+    &#9993;
+</div>
+
+<div id="message-form-container">
+    <form id="message-form">
+        <input type="text" id="message-input" placeholder="Leave a message (max 50 characters)" maxlength="50">
+        <button type="button" id="submit-message" onclick="submitMessage()">Submit</button>
+    </form>
+</div>
+
+<div id="confirmation-message">Message submitted successfully!</div>
+
+<script>
+    function toggleMessageForm() {
+        const formContainer = document.getElementById('message-form-container');
+        formContainer.style.display = formContainer.style.display === 'none' || formContainer.style.display === '' ? 'block' : 'none';
+    }
+
+    function submitMessage() {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value;
+        if (message.trim() !== '') {
+            // Display the confirmation message dynamically without an alert box
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.style.display = 'block';
+            setTimeout(() => {
+                confirmationMessage.style.display = 'none';
+            }, 2000);
+
+            // Reset the input field and hide the form
+            messageInput.value = '';
+            toggleMessageForm();
+
+            // Add message to message board (future implementation can include saving to a database)
+            const messageBoardLink = document.querySelector('.button-link[href="message-board.html"]');
+            messageBoardLink.setAttribute('data-message', message);
+        } else {
+            alert('Please enter a message before submitting.');
+        }
+    }
+</script>
 
 </body>
 </html>
