@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: slideIn 2s ease-in-out;
+        }
+        .message-list {
+            margin-top: 30px;
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.6);
+            animation: fadeIn 2.5s ease-in-out;
+        }
+        .message {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: messageSlideIn 1s ease-in-out;
+        }
+        footer {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes messageSlideIn {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Message Board</h1>
+    <p>Share your thoughts about Innovative Practices in Education Technology</p>
+</header>
+
+<div class="container">
+    <h2>Messages from Visitors</h2>
+    <div class="message-list" id="message-list">
+        <!-- Messages will be dynamically inserted here -->
+    </div>
+</div>
+
+<footer>
+    <p>Created as part of EDUC8510 - Innovative Practices in Education Technology | Contributors: Yilin Gong, Stella Aideyan, Faith Ezekwe</p>
+</footer>
+
+<script>
+    // Example messages for demonstration purposes
+    const messages = [
+        "Great content! Looking forward to more innovative ideas!",
+        "This website is very informative. Thank you for sharing!",
+        "I'm inspired to use these educational technologies in my classroom!"
+    ];
+
+    // Function to display messages dynamically
+    function displayMessages() {
+        const messageList = document.getElementById('message-list');
+        messages.forEach(message => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.textContent = message;
+            messageList.appendChild(messageElement);
+        });
+    }
+
+    // Call the function to display messages on page load
+    displayMessages();
+</script>
+
+</body>
+</html>
