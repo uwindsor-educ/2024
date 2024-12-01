@@ -149,8 +149,6 @@
             0% { transform: translateY(-100%); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
-            100% { transform: translateX(0); opacity: 1; }
-        }
         @keyframes fadeInOut {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -246,21 +244,10 @@
         } else {
             alert('Please enter a message before submitting.');
         }
-    }, 2000);
-
-            // Reset the input field and hide the form
-            messageInput.value = '';
-            toggleMessageForm();
-
-            // Add message to message board (future implementation can include saving to a database)
-            const messageBoardLink = document.querySelector('.button-link[href="message-board.html"]');
-            messageBoardLink.setAttribute('data-message', message);
-        } else {
-            alert('Please enter a message before submitting.');
-        }
     }
 </script>
 
 </body>
 </html>
+
 
