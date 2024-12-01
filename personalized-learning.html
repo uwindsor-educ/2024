@@ -4,57 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Learning</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+        /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* 动态粒子背景 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/l0HlA6j7lvsTP3DFO/giphy.gif') repeat center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
             text-align: center;
+            z-index: 2;
+            position: relative;
             animation: fadeIn 2s ease-in-out;
         }
-        h1 {
+
+        header h1 {
             margin: 0;
             font-size: 2.5em;
         }
-        .button-link {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .button-link:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
+
         .container {
             padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
             animation: slideIn 1.5s ease-in-out;
+            z-index: 2;
+            position: relative;
         }
+
+        ul {
+            line-height: 1.6;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: linear-gradient(135deg, #42a5f5, #64b5f6);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5), 0px 0px 15px rgba(66, 165, 245, 0.8);
+        }
+
         footer {
-            background-color: #333;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             text-align: center;
             padding: 10px;
             margin-top: 20px;
-            animation: fadeIn 3s ease-in-out;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            z-index: 2;
         }
-        h3 {
-            color: #4CAF50;
-        }
-        ul {
-            line-height: 1.6;
-        }
+
+        /* 动画效果 */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -63,6 +100,7 @@
                 opacity: 1;
             }
         }
+
         @keyframes slideIn {
             from {
                 transform: translateY(30px);
@@ -71,6 +109,18 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
             }
         }
     </style>
@@ -82,52 +132,35 @@
 </header>
 
 <div class="container">
-    <p>Personalized learning leverages technology to adapt educational content to individual student needs, helping each learner achieve their fullest potential.</p>
+    <p>
+        Personalized learning leverages technology to adapt educational content to individual student needs, helping each learner achieve their fullest potential. It tailors teaching methods, resources, and activities to the unique needs and goals of each student.
+    </p>
     
     <h3>Key Tool: ChatGPT</h3>
-    <p>Applications include designing personalized study plans and explaining complex concepts in multiple ways.</p>
+    <p>
+        ChatGPT supports personalized learning by designing study plans, explaining complex concepts, and providing instant feedback.
+    </p>
     <a href="https://chat.openai.com/" class="button-link" target="_blank">Visit ChatGPT</a>
-
-    <h3>What is Personalized Learning?</h3>
-    <p>
-        Personalized learning is an educational approach that tailors teaching methods, resources, and learning activities 
-        to the unique needs, preferences, and abilities of individual students. This approach recognizes that each learner 
-        is different and ensures that everyone has the best possible opportunity to succeed.
-    </p>
-
-    <h3>How Technology Enhances Personalized Learning</h3>
-    <ul>
-        <li><strong>Adaptive Learning Platforms:</strong> Tools like ChatGPT and AI-driven platforms can assess a student's 
-            current level of understanding and adapt content delivery to their needs in real-time.</li>
-        <li><strong>Data Analytics:</strong> Technologies that analyze student performance data can provide educators 
-            with insights into strengths, weaknesses, and progress, helping them create targeted interventions.</li>
-        <li><strong>Interactive Content:</strong> Interactive tools such as simulations, games, and virtual labs allow 
-            students to learn at their own pace while exploring complex topics in engaging ways.</li>
-        <li><strong>Collaborative Tools:</strong> Students can use shared platforms like Notion to track their goals 
-            and monitor their own learning progress.</li>
-    </ul>
-
-    <h3>Examples of Personalized Learning in Action</h3>
-    <p>
-        1. <strong>Using ChatGPT for Real-Time Support:</strong> A student struggling with mathematics can use ChatGPT 
-        to get step-by-step solutions to equations, detailed explanations of concepts, and even suggestions for additional practice problems.
-    </p>
-    <p>
-        2. <strong>Customizing Study Plans:</strong> A teacher can input a student's learning goals and schedule into ChatGPT to generate 
-        a tailored weekly or monthly study plan, complete with recommended resources and milestones.
-    </p>
-    <p>
-        3. <strong>Leveraging Interactive Quizzes:</strong> Platforms like Quizizz can provide instant feedback on assessments, 
-        enabling students to focus on areas that need improvement.
-    </p>
 
     <h3>Benefits of Personalized Learning</h3>
     <ul>
-        <li>Students learn at their own pace, ensuring a deeper understanding of the material.</li>
-        <li>Increases motivation and engagement by aligning content with student interests.</li>
-        <li>Encourages self-directed learning, fostering independence and confidence.</li>
-        <li>Provides immediate feedback to students and teachers, improving outcomes.</li>
+        <li>Students learn at their own pace for deeper understanding.</li>
+        <li>Improves engagement by aligning content with interests.</li>
+        <li>Fosters independence through self-directed learning.</li>
+        <li>Provides instant feedback to optimize progress.</li>
     </ul>
+
+    <h3>Examples</h3>
+    <p>
+        1. A math student uses ChatGPT for step-by-step solutions and explanations.<br>
+        2. Teachers create tailored study plans with ChatGPT for each learner.<br>
+        3. Quizizz offers instant feedback to focus on areas of improvement.
+    </p>
+
+    <h3>Future of Personalized Learning</h3>
+    <p>
+        With AI and data analytics, personalized learning will continue to evolve, creating highly adaptive and engaging experiences for students worldwide.
+    </p>
 
     <a href="index.html" class="button-link">Back to Home</a>
 </div>
@@ -138,4 +171,3 @@
 
 </body>
 </html>
-
